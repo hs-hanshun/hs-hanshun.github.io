@@ -1,0 +1,20 @@
+{
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "vitepress dev --host 0.0.0.0",
+        "build": "vitepress build",
+        "serve": "vitepress serve"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "vitepress": "^1.0.0-alpha.4",
+        "globby": "^11.0.4",
+        "gray-matter": "^4.0.3",
+        "fs-extra": "^10.0.0"
+    }
+}
