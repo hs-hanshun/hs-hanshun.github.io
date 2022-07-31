@@ -1,7 +1,7 @@
 const { getPosts, generatePaginationPages } = require('./theme/serverUtils')
 
 async function config() {
-    const pageSize = 2
+    const pageSize = 10 //分页大小
     await generatePaginationPages(pageSize)
     return {
         title: 'hassan',
@@ -10,10 +10,10 @@ async function config() {
         themeConfig: {
             posts: await getPosts(),
             pageSize: pageSize,
-            website: 'https://github.com/hs-hanshun/hs-hanshun.git', //copyright link
+            website: 'https://github.com/hs-hanshun/hs-hanshun.github.io.git', //copyright link
             // 评论的仓库地址
             comment: {
-                repo: 'hs-hanshun',
+                repo: 'hs-hanshun.github.io',
                 themes: 'github-light',
                 issueTerm: 'pathname'
             },
