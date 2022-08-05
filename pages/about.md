@@ -5,4 +5,4 @@ description: About me test
 sidebar: false
 ---
 # about me
-一个对技术无限追求的人，终身学习者。
+一个很随性的技术人！

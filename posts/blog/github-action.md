@@ -6,6 +6,7 @@ tags:
 - Github Action
 description: 基于Github Action自动化部署静态页面
 ---
+# Github Action自动化部署静态页面
 ## VitePress、Github Pages自动化部署
 接上篇博客《VitePress、Github Pages搭建博客网站》，本篇博客我们通过Github的Action实现提交代码自动化部署，不用每次自己打包，再上传到项目中这么麻烦了。首选在Github中创建一个空白的分支，这里我们要把打包好的代码放到这个分支中，比如，这里我创建的是blog-pages分支，Github会把打包好的前端文件放到blog-pages这个分支中，同时我们需要修改Github Pages项目，访问的页面指向blog-pages分支的根目录下面，这里的操作没有什么技术含量不再做赘述，下面我把workflow文件贴出来，重点说明一下
 ```
