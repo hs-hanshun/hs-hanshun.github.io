@@ -1,5 +1,5 @@
 ---
-date: 2022-07-31
+date: 2021-07-31
 title: Github Action自动化部署静态页面
 tags:
 - VitePress
