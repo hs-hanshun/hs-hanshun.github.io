@@ -10,7 +10,7 @@ async function config() {
         themeConfig: {
             posts: await getPosts(),
             pageSize: pageSize,
-            website: 'https://github.com/hs-hanshun/hs-hanshun.github.io.git', //copyright link
+            website: 'https://github.com/hs-hanshun', //copyright link
             // 评论的仓库地址
             comment: {
                 repo: 'hs-hanshun.github.io',

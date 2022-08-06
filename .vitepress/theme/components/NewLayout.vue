@@ -2,7 +2,7 @@
     <Layout />
     <Copyright />
 </template>
-<script setup>
+<script lang="ts" setup>
 import DefaultTheme from 'vitepress/theme'
 import Copyright from './Copyright.vue'
 const { Layout } = DefaultTheme
