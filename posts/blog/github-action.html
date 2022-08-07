@@ -6,8 +6,8 @@
     <title>Github Action自动化部署静态页面 | hassan</title>
     <meta name="description" content="基于Github Action自动化部署静态页面">
     <link rel="stylesheet" href="/assets/style.dd5de40c.css">
-    <link rel="modulepreload" href="/assets/app.2a432200.js">
-    <link rel="modulepreload" href="/assets/posts_blog_github-action.md.e89951d4.lean.js">
+    <link rel="modulepreload" href="/assets/app.0e52b8bc.js">
+    <link rel="modulepreload" href="/assets/posts_blog_github-action.md.77c080f6.lean.js">
     
     <meta name="twitter:title" content="Github Action自动化部署静态页面 | hassan">
   <meta property="og:title" content="Github Action自动化部署静态页面 | hassan">
@@ -48,8 +48,8 @@ jobs:
           branch: blog-pages # 部署到 blog-pages 分支，因为 main 分支存放的一般是源码，而 blog-pages 分支则用来存放生成的静态文件
           folder: .vitepress/dist # github 打包生成静态文件的目录，action复制此目录的文件到blog-pages分支
 </code></pre></div><h2 id="填坑" tabindex="-1">填坑 <a class="header-anchor" href="#填坑" aria-hidden="true">#</a></h2><p>参数已经在代码中做了说明，几乎不需要修改就可以使用，但是最需要注意的一项是Deploy这一步，FOLDER参数一定要选对，一定要是Github打包生成静态文件的目录，要不然会部署失败的，本地可以先打包看下项目生成的静态文件位置，一般在Github上也是这个位置。我们也可以在Github中创建2个项目，一个是存放我们源代码的地方，一个是配置Github Pages页面的仓库，这个可以做到源码和静态文件分离，别人也不会影响到你写的内容，配置的时候参考JamesIves/github-pages-deploy-action说明文档。</p></div></div><footer class="page-footer" data-v-8fcebc32 data-v-b65b4b36><div class="edit" data-v-b65b4b36><div class="edit-link" data-v-b65b4b36 data-v-55695e90><!----></div></div><div class="updated" data-v-b65b4b36><!----></div></footer><!----><!--[--><!--]--></div></main></div><!----><!--]--><div class="site-footer"> MIT Licensed | Copyright © 2021-2022 <a class="vitepress" href="https://github.com/hs-hanshun">hassan</a><br> Powered by <a class="vitepress" target="_blank" href="//vitepress.vuejs.org/">VitePress</a></div><!--]--></div>
-    <script>__VP_HASH_MAP__ = JSON.parse("{\"index.md\":\"76390a4e\",\"pages_about.md\":\"40362598\",\"pages_archives.md\":\"a1c91a5f\",\"pages_tags.md\":\"4acbe2d2\",\"posts_blog_github-action.md\":\"e89951d4\",\"posts_blog_vitepress-github.md\":\"a6186283\",\"posts_network_wireshark.md\":\"ee39bf18\",\"posts_personal_think.md\":\"00ec788a\"}")</script>
-    <script type="module" async src="/assets/app.2a432200.js"></script>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"catalog_content.md\":\"2147b1af\",\"index.md\":\"5c7b7a2d\",\"pages_about.md\":\"05788636\",\"pages_archives.md\":\"f4b02683\",\"pages_tags.md\":\"3ebf2459\",\"posts_blog_github-action.md\":\"77c080f6\",\"posts_blog_vitepress-github.md\":\"51760f5b\",\"posts_network_wireshark.md\":\"e054d73e\",\"posts_personal_information.md\":\"22ffc329\",\"posts_personal_think-habit.md\":\"ae8e9d33\"}")</script>
+    <script type="module" async src="/assets/app.0e52b8bc.js"></script>
     
   </body>
 </html>
