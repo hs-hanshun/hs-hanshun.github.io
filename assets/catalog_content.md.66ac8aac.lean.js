@@ -1,1 +1,0 @@
-import{_ as a,o as e,c as t,a as r}from"./app.21f69fcc.js";const b='{"title":"blog","description":"","frontmatter":{},"headers":[],"relativePath":"catalog/content.md"}',o={},s=r("",6),n=[s];function h(i,c,l,p,_,d){return e(),t("div",null,n)}var m=a(o,[["render",h]]);export{b as __pageData,m as default};
