@@ -6,8 +6,8 @@
     <title>Github Action自动化部署静态页面 | hassan</title>
     <meta name="description" content="基于Github Action自动化部署静态页面">
     <link rel="stylesheet" href="/assets/style.dd5de40c.css">
-    <link rel="modulepreload" href="/assets/app.7ec74737.js">
-    <link rel="modulepreload" href="/assets/posts_blog_github-action.md.83bf8916.lean.js">
+    <link rel="modulepreload" href="/assets/app.a4b159c5.js">
+    <link rel="modulepreload" href="/assets/posts_blog_github-action.md.80faa44a.lean.js">
     
     <meta name="twitter:title" content="Github Action自动化部署静态页面 | hassan">
   <meta property="og:title" content="Github Action自动化部署静态页面 | hassan">
@@ -47,9 +47,9 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }} # 也就是我们刚才生成的 secret
           branch: blog-pages # 部署到 blog-pages 分支，因为 main 分支存放的一般是源码，而 blog-pages 分支则用来存放生成的静态文件
           folder: .vitepress/dist # github 打包生成静态文件的目录，action复制此目录的文件到blog-pages分支
-</code></pre></div><h2 id="填坑" tabindex="-1">填坑 <a class="header-anchor" href="#填坑" aria-hidden="true">#</a></h2><p>参数已经在代码中做了说明，几乎不需要修改就可以使用，但是最需要注意的一项是Deploy这一步，FOLDER参数一定要选对，一定要是Github打包生成静态文件的目录，要不然会部署失败的，本地可以先打包看下项目生成的静态文件位置，一般在Github上也是这个位置。我们也可以在Github中创建2个项目，一个是存放我们源代码的地方，一个是配置Github Pages页面的仓库，这个可以做到源码和静态文件分离，别人也不会影响到你写的内容，配置的时候参考JamesIves/github-pages-deploy-action说明文档。</p></div></div><footer class="page-footer" data-v-8fcebc32 data-v-b65b4b36><div class="edit" data-v-b65b4b36><div class="edit-link" data-v-b65b4b36 data-v-55695e90><!----></div></div><div class="updated" data-v-b65b4b36><!----></div></footer><!----><!--[--><!--]--></div></main></div><!----><!--]--><div class="site-footer"> MIT Licensed | Copyright © 2021-2023 <a class="vitepress">hassan</a><br> Powered by <a class="vitepress" target="_blank" href="//vitepress.vuejs.org/">VitePress</a></div><!--]--></div>
-    <script>__VP_HASH_MAP__ = JSON.parse("{\"catalog_content.md\":\"0f37e107\",\"index.md\":\"dfc50821\",\"page_2.md\":\"3a02ccc7\",\"pages_about.md\":\"d4d358ae\",\"pages_archives.md\":\"ca2379f4\",\"pages_tags.md\":\"f76e7783\",\"posts_blog_github-action.md\":\"83bf8916\",\"posts_blog_vitepress-github.md\":\"4502e75c\",\"posts_git_git-learn.md\":\"745768dd\",\"posts_network_tcp-model.md\":\"5c9bab00\",\"posts_network_tcp-three-shark.md\":\"3b877748\",\"posts_network_tcp-time_wait.md\":\"a176eb16\",\"posts_network_tpcip-one.md\":\"89cb0ad1\",\"posts_personal_information.md\":\"aaa96fa4\",\"posts_personal_study.md\":\"3abcc3e2\",\"posts_personal_think-habit.md\":\"d55c823f\",\"posts_personal_think-object.md\":\"b839db12\",\"posts_personal_work-five.md\":\"2d039231\"}")</script>
-    <script type="module" async src="/assets/app.7ec74737.js"></script>
+</code></pre></div><h2 id="填坑" tabindex="-1">填坑 <a class="header-anchor" href="#填坑" aria-hidden="true">#</a></h2><p>参数已经在代码中做了说明，几乎不需要修改就可以使用，但是最需要注意的一项是Deploy这一步，FOLDER参数一定要选对，一定要是Github打包生成静态文件的目录，要不然会部署失败的，本地可以先打包看下项目生成的静态文件位置，一般在Github上也是这个位置。我们也可以在Github中创建2个项目，一个是存放我们源代码的地方，一个是配置Github Pages页面的仓库，这个可以做到源码和静态文件分离，别人也不会影响到你写的内容，配置的时候参考JamesIves/github-pages-deploy-action说明文档。</p></div></div><footer class="page-footer" data-v-8fcebc32 data-v-b65b4b36><div class="edit" data-v-b65b4b36><div class="edit-link" data-v-b65b4b36 data-v-55695e90><!----></div></div><div class="updated" data-v-b65b4b36><!----></div></footer><!----><!--[--><!--]--></div></main></div><!----><!--]--><div class="site-footer"> Copyright © 2021-2023 <a class="vitepress">hassan</a><br> Powered by <a class="vitepress" target="_blank" href="//vitepress.vuejs.org/">VitePress</a></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"catalog_content.md\":\"49f12937\",\"index.md\":\"ab94b35a\",\"page_2.md\":\"f356ee40\",\"pages_about.md\":\"52a58a11\",\"pages_archives.md\":\"b04f6904\",\"pages_tags.md\":\"f1284b87\",\"posts_blog_github-action.md\":\"80faa44a\",\"posts_blog_vitepress-github.md\":\"dab1a7a3\",\"posts_contract_value_type.md\":\"07cc9628\",\"posts_git_git-learn.md\":\"a05896a6\",\"posts_network_tcp-model.md\":\"7bb92d41\",\"posts_network_tcp-three-shark.md\":\"bf642fb9\",\"posts_network_tcp-time_wait.md\":\"5ff6dece\",\"posts_network_tpcip-one.md\":\"8cbe71d1\",\"posts_personal_information.md\":\"2ac42de6\",\"posts_personal_study.md\":\"34446410\",\"posts_personal_think-habit.md\":\"11c6094f\",\"posts_personal_think-object.md\":\"73d87921\",\"posts_personal_work-five.md\":\"f7049e26\"}")</script>
+    <script type="module" async src="/assets/app.a4b159c5.js"></script>
     
   </body>
 </html>
