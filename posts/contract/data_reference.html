@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Solidity引用类型 | hassan</title>
+    <meta name="description" content="引用类型，array，struct">
+    <link rel="stylesheet" href="/assets/style.dd5de40c.css">
+    <link rel="modulepreload" href="/assets/app.eb0c8332.js">
+    <link rel="modulepreload" href="/assets/posts_contract_data_reference.md.463da0a6.lean.js">
+    
+    <meta name="twitter:title" content="Solidity引用类型 | hassan">
+  <meta property="og:title" content="Solidity引用类型 | hassan">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><div class="theme"><header class="nav-bar" data-v-40587210><div class="sidebar-button" data-v-40587210><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/" aria-label="hassan, back to home" data-v-40587210 data-v-016a8bd8><!----> hassan</a><div class="flex-grow" data-v-40587210></div><div class="nav" data-v-40587210><nav class="nav-links" data-v-40587210 data-v-35b91e7e><!--[--><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/" data-v-49fe041d>Home <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/archives" data-v-49fe041d>Archives <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/tags" data-v-49fe041d>Tags <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/about" data-v-49fe041d>About <!----></a></div></div><!--]--><!----><!----></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-17c48e2f><nav class="nav-links nav" data-v-17c48e2f data-v-35b91e7e><!--[--><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/" data-v-49fe041d>Home <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/archives" data-v-49fe041d>Archives <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/tags" data-v-49fe041d>Tags <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/about" data-v-49fe041d>About <!----></a></div></div><!--]--><!----><!----></nav><!--[--><!--]--><ul class="sidebar-links" data-v-17c48e2f><!--[--><li class="sidebar-link"><a class="sidebar-link-item" href="#数组array">数组array</a><ul class="sidebar-links"><li class="sidebar-link"><a class="sidebar-link-item" href="#创建数组的规则">创建数组的规则</a><!----></li><li class="sidebar-link"><a class="sidebar-link-item" href="#数组常用方法">数组常用方法</a><!----></li></ul></li><li class="sidebar-link"><a class="sidebar-link-item" href="#结构体">结构体</a><!----></li><!--]--></ul><!--[--><!--]--></aside><div class="sidebar-mask"></div><main class="page" data-v-8fcebc32><div class="container" data-v-8fcebc32><!--[--><!--]--><div style="position:relative;" class="content" data-v-8fcebc32><div><h1 id="solidity引用类型" tabindex="-1">Solidity引用类型 <a class="header-anchor" href="#solidity引用类型" aria-hidden="true">#</a></h1><h2 id="数组array" tabindex="-1">数组array <a class="header-anchor" href="#数组array" aria-hidden="true">#</a></h2><p>数据是Solidity中常用的一种变量类型，用来存储一组数据(整数，字节，地址等等)。数据分为固定长度数组和可变长度数组两种：</p><ul><li>固定长度数组：在声明时指定数组的长度。用T[k]的格式声明，其中T是元素的类型，k是长度，例如：</li></ul><div class="language-"><pre><code>    // 固定长度 Array
+    uint[8] array1;
+    bytes1[5] array2;
+    address[100] array3;
+</code></pre></div><ul><li>可变长度数组(动态数组)：在声明时不指定数组的长度。用T[]的格式声明，其中T是元素类型，例如：</li></ul><div class="language-"><pre><code>    // 可变长度 Array
+    uint[] array4;
+    bytes1[] array5;
+    address[] array6;
+    bytes array7;
+</code></pre></div><p>注意：bytes比较特殊，是数组，但是不用加[]。另外，不能用byte[]声明单数组，可以使用bytes或者bytes1[]，在gas上，bytes比bytes1[]便宜，因为bytes1[]在memory中要增加31个字节进行填充，会产生额外的gas。但是在storage中，由于内存紧密打包，不存在字节填充。</p><h3 id="创建数组的规则" tabindex="-1">创建数组的规则 <a class="header-anchor" href="#创建数组的规则" aria-hidden="true">#</a></h3><p>在Solidity里，创建数组有一些规则：</p><ul><li>对于memory修饰的动态数组，可以使用new操作符来创建，但是必须声明长度，并且声明长度后不能改变，例如：</li></ul><div class="language-"><pre><code>    // memory动态数组
+    uint[] memory array8 = new uint[](5);
+    bytes memory array9 = new bytes(9);
+</code></pre></div><ul><li>数组字面常数(Array Literals)是写作表达式形式的数组，用方括号包着来初始化array的一种方式，并且里面每一个元素的type是以第一个元素为准的，例如[1,2,3]里面所有的元素都是uint8类型，因为在solidity中如果一个值没有指定type的话，默认就是最小单位的该type，这里int的默认最小单位类型就是uint8。而[uint(1),2,3]里面的元素都是uint类型，因为第一个元素指定了是uint类型了，我们都以第一个元素为准。 下面的合约中，对于f函数里面的调用，如果我们没有显式对第一个元素进行uint强转的话，是会报错的，因为如上所述我们其实是传入了uint8类型的array，可是g函数需要的却是uint类型的array，就会报错了。</li></ul><div class="language-"><pre><code>// SPDX-License-Identifier: GPL-3.0
+pragma solidity &gt;=0.4.16 &lt;0.9.0;
+
+contract C {
+    function f() public pure {
+        g([uint(1), 2, 3]);
+    }
+    function g(uint[3] memory) public pure {
+        // ...
+    }
+}
+</code></pre></div><ul><li>如果创建的是动态数组，需要一个一个的去赋值</li></ul><div class="language-"><pre><code>    uint[] memory x = new uint[](3);
+    x[0] = 1;
+    x[1] = 3;
+    x[2] = 4;
+</code></pre></div><h3 id="数组常用方法" tabindex="-1">数组常用方法 <a class="header-anchor" href="#数组常用方法" aria-hidden="true">#</a></h3><ul><li>length: 数组有一个包含元素数量的length成员，memory数组的长度在创建后是固定的。</li><li>push(): 动态数组和bytes拥有push()成员，可以在数组最后添加一个0元素。</li><li>push(x): 动态数组和bytes拥有push(x)成员，可以在数组最后添加一个x元素。</li><li>pop(): 动态数组和bytes拥有pop()成员，可以移除数组最后一个元素。</li></ul><h2 id="结构体" tabindex="-1">结构体 <a class="header-anchor" href="#结构体" aria-hidden="true">#</a></h2><p>Solidity支持通过构造结构体的形式定义新的类型。创建结构体的方法：</p><div class="language-"><pre><code>    // 结构体
+    struct Student{
+        uint256 id;
+        uint256 score; 
+    }
+
+    Student student; // 初始一个student结构体
+
+    //  给结构体赋值
+    // 方法1:在函数中创建一个storage的struct引用
+    function initStudent1() external{
+        Student storage _student = student; // assign a copy of student
+        _student.id = 11;
+        _student.score = 100;
+    }
+
+    // 方法2:直接引用状态变量的struct
+    function initStudent2() external{
+        student.id = 1;
+        student.score = 80;
+    }
+</code></pre></div></div></div><footer class="page-footer" data-v-8fcebc32 data-v-b65b4b36><div class="edit" data-v-b65b4b36><div class="edit-link" data-v-b65b4b36 data-v-55695e90><!----></div></div><div class="updated" data-v-b65b4b36><!----></div></footer><!----><!--[--><!--]--></div></main></div><!----><!--]--><div class="site-footer"> Copyright © 2021-2023 <a class="vitepress">hassan</a><br> Powered by <a class="vitepress" target="_blank" href="//vitepress.vuejs.org/">VitePress</a></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"catalog_content.md\":\"4e16b7db\",\"index.md\":\"72a32872\",\"page_2.md\":\"5e8605bd\",\"pages_about.md\":\"4159e856\",\"pages_archives.md\":\"fb203d50\",\"pages_tags.md\":\"4140af67\",\"posts_blog_github-action.md\":\"b7e057aa\",\"posts_blog_vitepress-github.md\":\"ef33a497\",\"posts_contract_data_reference.md\":\"463da0a6\",\"posts_contract_data_storage.md\":\"afac9e3a\",\"posts_contract_fun_return_val.md\":\"a981bf12\",\"posts_contract_fun_type.md\":\"0fd4c0a7\",\"posts_contract_mapping.md\":\"bbf95c4a\",\"posts_contract_value_type.md\":\"280fe118\",\"posts_es_es_type.md\":\"a6b5abad\",\"posts_git_git-learn.md\":\"b6459ded\",\"posts_network_tcp-model.md\":\"14bbd0b1\",\"posts_network_tcp-three-shark.md\":\"a241e201\",\"posts_network_tcp-time_wait.md\":\"144df631\",\"posts_network_tpcip-one.md\":\"d5702723\",\"posts_personal_information.md\":\"7efb90de\",\"posts_personal_study.md\":\"c4c5febb\",\"posts_personal_think-habit.md\":\"54a39480\",\"posts_personal_think-object.md\":\"b29b002a\",\"posts_personal_work-five.md\":\"8ebe22a1\"}")</script>
+    <script type="module" async src="/assets/app.eb0c8332.js"></script>
+    
+  </body>
+</html>
