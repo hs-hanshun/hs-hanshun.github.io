@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Solidity构造函数和修饰器 | hassan</title>
+    <meta name="description" content="构造函数、修饰器">
+    <link rel="stylesheet" href="/assets/style.dd5de40c.css">
+    <link rel="modulepreload" href="/assets/app.0387de29.js">
+    <link rel="modulepreload" href="/assets/posts_contract_constructor_modifer.md.9af56485.lean.js">
+    
+    <meta name="twitter:title" content="Solidity构造函数和修饰器 | hassan">
+  <meta property="og:title" content="Solidity构造函数和修饰器 | hassan">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><div class="theme"><header class="nav-bar" data-v-40587210><div class="sidebar-button" data-v-40587210><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/" aria-label="hassan, back to home" data-v-40587210 data-v-016a8bd8><!----> hassan</a><div class="flex-grow" data-v-40587210></div><div class="nav" data-v-40587210><nav class="nav-links" data-v-40587210 data-v-35b91e7e><!--[--><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/" data-v-49fe041d>Home <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/archives" data-v-49fe041d>Archives <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/tags" data-v-49fe041d>Tags <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/about" data-v-49fe041d>About <!----></a></div></div><!--]--><!----><!----></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-17c48e2f><nav class="nav-links nav" data-v-17c48e2f data-v-35b91e7e><!--[--><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/" data-v-49fe041d>Home <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/archives" data-v-49fe041d>Archives <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/tags" data-v-49fe041d>Tags <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/about" data-v-49fe041d>About <!----></a></div></div><!--]--><!----><!----></nav><!--[--><!--]--><ul class="sidebar-links" data-v-17c48e2f><!--[--><li class="sidebar-link"><a class="sidebar-link-item" href="#构造函数">构造函数</a><!----></li><li class="sidebar-link"><a class="sidebar-link-item" href="#修饰器">修饰器</a><!----></li><!--]--></ul><!--[--><!--]--></aside><div class="sidebar-mask"></div><main class="page" data-v-8fcebc32><div class="container" data-v-8fcebc32><!--[--><!--]--><div style="position:relative;" class="content" data-v-8fcebc32><div><h1 id="solidity构造函数和修饰器" tabindex="-1">Solidity构造函数和修饰器 <a class="header-anchor" href="#solidity构造函数和修饰器" aria-hidden="true">#</a></h1><h2 id="构造函数" tabindex="-1">构造函数 <a class="header-anchor" href="#构造函数" aria-hidden="true">#</a></h2><p>构造函数（constructor）是一种特殊的函数，每个合约可以定义一个，并在部署合约的时候自动运行一次。它可以用来初始化合约的一些参数，例如初始化合约的owner地址：</p><div class="language-"><pre><code>   address owner; // 定义owner变量
+
+   // 构造函数
+   constructor() {
+      owner = msg.sender; // 在部署合约的时候，将owner设置为部署者的地址
+   }
+</code></pre></div><h2 id="修饰器" tabindex="-1">修饰器 <a class="header-anchor" href="#修饰器" aria-hidden="true">#</a></h2><p>修饰器（modifier）是Solidity特有的语法，类似于面向对象编程中的decorator，声明函数拥有的特性，并减少代码冗余。它就像钢铁侠的智能盔甲，穿上它的函数会带有某些特定的行为。modifier的主要使用场景是运行函数前的检查，例如地址，变量，余额等。</p><p>我们来定义一个叫做onlyOwner的modifier：</p><div class="language-"><pre><code>   // 定义modifier
+   modifier onlyOwner {
+      require(msg.sender == owner); // 检查调用者是否为owner地址
+      _; // 如果是的话，继续运行函数主体；否则报错并revert交易
+   }
+</code></pre></div><p>带有onlyOwner修饰符的函数只能被owner地址调用，比如下面这个例子：</p><div class="language-"><pre><code>   function changeOwner(address _newOwner) external onlyOwner{
+      owner = _newOwner; // 只有owner地址运行这个函数，并改变owner
+   }
+</code></pre></div><p>我们定义了一个changeOwner函数，运行他可以改变合约的owner，但是由于onlyOwner修饰符的存在，只有原先的owner可以调用，别人调用就会报错。这也是最常用的控制智能合约权限的方法。</p></div></div><footer class="page-footer" data-v-8fcebc32 data-v-b65b4b36><div class="edit" data-v-b65b4b36><div class="edit-link" data-v-b65b4b36 data-v-55695e90><!----></div></div><div class="updated" data-v-b65b4b36><!----></div></footer><!----><!--[--><!--]--></div></main></div><!----><!--]--><div class="site-footer"> Copyright © 2021-2023 <a class="vitepress">hassan</a><br> Powered by <a class="vitepress" target="_blank" href="//vitepress.vuejs.org/">VitePress</a></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"catalog_content.md\":\"80687030\",\"index.md\":\"03c68b44\",\"page_2.md\":\"acf248ed\",\"page_3.md\":\"5bb0b078\",\"pages_about.md\":\"c05544a3\",\"pages_archives.md\":\"4f350d0a\",\"pages_tags.md\":\"36760995\",\"posts_blog_github-action.md\":\"60118e30\",\"posts_blog_vitepress-github.md\":\"8a83a965\",\"posts_contract_abstract_interface.md\":\"9e8f9070\",\"posts_contract_constructor_modifer.md\":\"9af56485\",\"posts_contract_data_reference.md\":\"2b8a4db6\",\"posts_contract_data_storage.md\":\"e100f511\",\"posts_contract_event.md\":\"d0c539fb\",\"posts_contract_exception.md\":\"556c7514\",\"posts_contract_fun_return_val.md\":\"f2fcf454\",\"posts_contract_fun_type.md\":\"3e8f96d6\",\"posts_contract_inheritance.md\":\"bdbef102\",\"posts_contract_mapping.md\":\"74cd6554\",\"posts_contract_value_type.md\":\"31c59acf\",\"posts_es_es_type.md\":\"f8746919\",\"posts_git_git-learn.md\":\"56d07870\",\"posts_network_tcp-model.md\":\"b73e12bd\",\"posts_network_tcp-three-shark.md\":\"58daf5c3\",\"posts_network_tcp-time_wait.md\":\"ea979849\",\"posts_network_tpcip-one.md\":\"ef6919b4\",\"posts_personal_information.md\":\"1bfc3b75\",\"posts_personal_study.md\":\"740f956a\",\"posts_personal_think-habit.md\":\"2e6d60b3\",\"posts_personal_think-object.md\":\"3fa849d6\",\"posts_personal_work-five.md\":\"cb5db898\"}")</script>
+    <script type="module" async src="/assets/app.0387de29.js"></script>
+    
+  </body>
+</html>

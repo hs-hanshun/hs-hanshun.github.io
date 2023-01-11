@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Solidity异常 | hassan</title>
+    <meta name="description" content="异常">
+    <link rel="stylesheet" href="/assets/style.dd5de40c.css">
+    <link rel="modulepreload" href="/assets/app.0387de29.js">
+    <link rel="modulepreload" href="/assets/posts_contract_exception.md.556c7514.lean.js">
+    
+    <meta name="twitter:title" content="Solidity异常 | hassan">
+  <meta property="og:title" content="Solidity异常 | hassan">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><div class="theme"><header class="nav-bar" data-v-40587210><div class="sidebar-button" data-v-40587210><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/" aria-label="hassan, back to home" data-v-40587210 data-v-016a8bd8><!----> hassan</a><div class="flex-grow" data-v-40587210></div><div class="nav" data-v-40587210><nav class="nav-links" data-v-40587210 data-v-35b91e7e><!--[--><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/" data-v-49fe041d>Home <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/archives" data-v-49fe041d>Archives <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/tags" data-v-49fe041d>Tags <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/about" data-v-49fe041d>About <!----></a></div></div><!--]--><!----><!----></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-17c48e2f><nav class="nav-links nav" data-v-17c48e2f data-v-35b91e7e><!--[--><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/" data-v-49fe041d>Home <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/archives" data-v-49fe041d>Archives <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/tags" data-v-49fe041d>Tags <!----></a></div></div><div class="item" data-v-35b91e7e><div class="nav-link" data-v-35b91e7e data-v-49fe041d><a class="item" href="/pages/about" data-v-49fe041d>About <!----></a></div></div><!--]--><!----><!----></nav><!--[--><!--]--><ul class="sidebar-links" data-v-17c48e2f><!--[--><li class="sidebar-link"><a class="sidebar-link-item" href="#异常">异常</a><!----></li><li class="sidebar-link"><a class="sidebar-link-item" href="#require">Require</a><!----></li><li class="sidebar-link"><a class="sidebar-link-item" href="#assert">Assert</a><!----></li><!--]--></ul><!--[--><!--]--></aside><div class="sidebar-mask"></div><main class="page" data-v-8fcebc32><div class="container" data-v-8fcebc32><!--[--><!--]--><div style="position:relative;" class="content" data-v-8fcebc32><div><h1 id="solidity异常" tabindex="-1">Solidity异常 <a class="header-anchor" href="#solidity异常" aria-hidden="true">#</a></h1><h2 id="异常" tabindex="-1">异常 <a class="header-anchor" href="#异常" aria-hidden="true">#</a></h2><p>error是solidity 0.8.4版本新加的内容，方便且高效（省gas）地向用户解释操作失败的原因，同时还可以在抛出异常的同时携带参数，帮助开发者更好地调试。人们可以在contract之外定义异常。下面，我们定义一个TransferNotOwner异常，当用户不是代币owner的时候尝试转账，会抛出错误：</p><div class="language-"><pre><code>error TransferNotOwner(); // 自定义error
+</code></pre></div><p>我们也可以定义一个携带参数的异常，来提示尝试转账的账户地址</p><div class="language-"><pre><code>error TransferNotOwner(address sender); // 自定义的带参数的error
+</code></pre></div><p>在执行当中，error必须搭配revert（回退）命令使用。</p><div class="language-"><pre><code>    function transferOwner1(uint256 tokenId, address newOwner) public {
+        if(_owners[tokenId] != msg.sender){
+            revert TransferNotOwner();
+            // revert TransferNotOwner(msg.sender);
+        }
+        _owners[tokenId] = newOwner;
+    }
+</code></pre></div><p>我们定义了一个transferOwner1()函数，它会检查代币的owner是不是发起人，如果不是，就会抛出TransferNotOwner异常；如果是的话，就会转账。</p><h2 id="require" tabindex="-1">Require <a class="header-anchor" href="#require" aria-hidden="true">#</a></h2><p>require命令是solidity 0.8版本之前抛出异常的常用方法，目前很多主流合约仍然还在使用它。它很好用，唯一的缺点就是gas随着描述异常的字符串长度增加，比error命令要高。使用方法：require(检查条件，&quot;异常的描述&quot;)，当检查条件不成立的时候，就会抛出异常。</p><p>我们用require命令重写一下上面的transferOwner函数：</p><div class="language-"><pre><code>    function transferOwner2(uint256 tokenId, address newOwner) public {
+        require(_owners[tokenId] == msg.sender, &quot;Transfer Not Owner&quot;);
+        _owners[tokenId] = newOwner;
+    }
+</code></pre></div><h2 id="assert" tabindex="-1">Assert <a class="header-anchor" href="#assert" aria-hidden="true">#</a></h2><p>assert命令一般用于程序员写程序debug，因为它不能解释抛出异常的原因（比require少个字符串）。它的用法很简单，assert(检查条件），当检查条件不成立的时候，就会抛出异常。</p><p>我们用assert命令重写一下上面的transferOwner函数：</p><div class="language-"><pre><code>    function transferOwner3(uint256 tokenId, address newOwner) public {
+        assert(_owners[tokenId] == msg.sender);
+        _owners[tokenId] = newOwner;
+    }
+</code></pre></div></div></div><footer class="page-footer" data-v-8fcebc32 data-v-b65b4b36><div class="edit" data-v-b65b4b36><div class="edit-link" data-v-b65b4b36 data-v-55695e90><!----></div></div><div class="updated" data-v-b65b4b36><!----></div></footer><!----><!--[--><!--]--></div></main></div><!----><!--]--><div class="site-footer"> Copyright © 2021-2023 <a class="vitepress">hassan</a><br> Powered by <a class="vitepress" target="_blank" href="//vitepress.vuejs.org/">VitePress</a></div><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"catalog_content.md\":\"80687030\",\"index.md\":\"03c68b44\",\"page_2.md\":\"acf248ed\",\"page_3.md\":\"5bb0b078\",\"pages_about.md\":\"c05544a3\",\"pages_archives.md\":\"4f350d0a\",\"pages_tags.md\":\"36760995\",\"posts_blog_github-action.md\":\"60118e30\",\"posts_blog_vitepress-github.md\":\"8a83a965\",\"posts_contract_abstract_interface.md\":\"9e8f9070\",\"posts_contract_constructor_modifer.md\":\"9af56485\",\"posts_contract_data_reference.md\":\"2b8a4db6\",\"posts_contract_data_storage.md\":\"e100f511\",\"posts_contract_event.md\":\"d0c539fb\",\"posts_contract_exception.md\":\"556c7514\",\"posts_contract_fun_return_val.md\":\"f2fcf454\",\"posts_contract_fun_type.md\":\"3e8f96d6\",\"posts_contract_inheritance.md\":\"bdbef102\",\"posts_contract_mapping.md\":\"74cd6554\",\"posts_contract_value_type.md\":\"31c59acf\",\"posts_es_es_type.md\":\"f8746919\",\"posts_git_git-learn.md\":\"56d07870\",\"posts_network_tcp-model.md\":\"b73e12bd\",\"posts_network_tcp-three-shark.md\":\"58daf5c3\",\"posts_network_tcp-time_wait.md\":\"ea979849\",\"posts_network_tpcip-one.md\":\"ef6919b4\",\"posts_personal_information.md\":\"1bfc3b75\",\"posts_personal_study.md\":\"740f956a\",\"posts_personal_think-habit.md\":\"2e6d60b3\",\"posts_personal_think-object.md\":\"3fa849d6\",\"posts_personal_work-five.md\":\"cb5db898\"}")</script>
+    <script type="module" async src="/assets/app.0387de29.js"></script>
+    
+  </body>
+</html>
